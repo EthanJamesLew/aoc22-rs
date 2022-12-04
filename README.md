@@ -1,5 +1,5 @@
 # Advent of Code 2022
-
+![Rust CI/CD](https://github.com/EthanJamesLew/aoc22-rs/actions/workflows/rust.yml/badge.svg)
 
 The solutions are written as examples. They can be run with
 ```shell
@@ -54,7 +54,7 @@ fn main() {
 mod tests {
     use crate::Day02;
     use aoc_rs::AoC;
-    static TEST_FNAME: &str = "./inputs/day01/test.txt";
+    static TEST_FNAME: &str = "./inputs/day02/test.txt";
 
     #[test]
     fn test_part1() {

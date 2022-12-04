@@ -1,5 +1,6 @@
 # Advent of Code 2022
 ![Rust CI/CD](https://github.com/EthanJamesLew/aoc22-rs/actions/workflows/rust.yml/badge.svg)
+![Profiling](https://github.com/EthanJamesLew/aoc22-rs/actions/workflows/performance.yml/badge.svg)
 
 The solutions are written as examples. They can be run with
 ```shell
@@ -73,4 +74,16 @@ mod tests {
     }
 }
 
+```
+
+## Compare Against Python
+
+For perf, run
+```shell
+sudo sh -c 'echo 1 >/proc/sys/kernel/perf_event_paranoid'
+```
+
+For Day xx, run
+```shell
+./profile/compare_python.sh xx
 ```

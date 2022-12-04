@@ -11,7 +11,7 @@ class AoC(abc.ABC):
     Advent of Code Runner
     """
     @classmethod
-    def from_file(cls: 'AoC', filename: pathlib.Path) -> None:
+    def from_file(cls, filename: pathlib.Path):
         self = cls()
         self.load_from_file(filename)
         return self
@@ -32,7 +32,7 @@ class AoC(abc.ABC):
         raise NotImplementedError
 
     @property
-    def day(self) -> int:
+    def day(self):
         return self.__class__.__name__ 
 
     def run(self):
@@ -50,4 +50,3 @@ class AoC(abc.ABC):
         except Exception as exc:
             print(f"Encountered Error: <{exc}>")
         print(f"Done!")
-

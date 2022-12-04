@@ -8,6 +8,7 @@ perf stat ./target/release/examples/day$1 2> rust.out
 
 # run the python part
 echo "\033[0;31mRunning Python\033[0m"
+perf stat python ./python/day$1.py 
 perf stat python ./python/day$1.py 2> python.out
 PY_TIME=$(grep -Po "([0-9\.]+) seconds time elapsed" python.out | grep -Po "([0-9\.]+)")
 RS_TIME=$(grep -Po "([0-9\.]+) seconds time elapsed" rust.out | grep -Po "([0-9\.]+)")
@@ -18,3 +19,11 @@ echo "-----Performance Summary-----"
 echo "Python Time: $PY_TIME seconds"
 echo "Rust Time: $RS_TIME seconds"
 echo "Rust is $P_MULT times faster"
+
+# dump results to JSON
+echo "{" > perf_out_day$1.json
+echo "\"python_time\": $PY_TIME," >> perf_out_day$1.json
+echo "\"rust_time\": $RS_TIME" >> perf_out_day$1.json
+echo "}" >> perf_out_day$1.json
+# check it
+python ./profile/check_profile_output.py perf_out_day$1.json

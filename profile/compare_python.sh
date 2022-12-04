@@ -20,9 +20,11 @@ echo "Rust Time: $RS_TIME seconds"
 echo "Rust is $P_MULT times faster"
 
 # dump results to JSON
-echo "{" > "perf_out_day$1.json"
-echo "\"python_time\": $PY_TIME," >> "perf_out_day$1.json"
-echo "\"rust_time\": $RS_TIME" >> "perf_out_day$1.json"
-echo "}" >> "perf_out_day$1.json"
+{
+    echo "{" 
+    echo "\"python_time\": $PY_TIME,";
+    echo "\"rust_time\": $RS_TIME";
+    echo "}" ;
+} > "perf_out_day$1.json"
 # check it
 python ./profile/check_profile_output.py "perf_out_day$1.json"

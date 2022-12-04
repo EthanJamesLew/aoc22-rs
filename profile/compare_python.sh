@@ -8,7 +8,7 @@ perf stat ./target/release/examples/day$1 2> rust.out
 
 # run the python part
 echo "\033[0;31mRunning Python\033[0m"
-perf stat python3 ./python/day$1.py 2> python.out
+perf stat python ./python/day$1.py 2> python.out
 PY_TIME=$(grep -Po "([0-9\.]+) seconds time elapsed" python.out | grep -Po "([0-9\.]+)")
 RS_TIME=$(grep -Po "([0-9\.]+) seconds time elapsed" rust.out | grep -Po "([0-9\.]+)")
 P_MULT=$(echo $PY_TIME / $RS_TIME | bc)

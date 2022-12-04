@@ -10,14 +10,14 @@ mod rsack {
     pub fn encode(c: char) -> u64 {
         let ascii_uint = c as u64;
         let bit_pos = ascii_uint - ('A' as u64);
-        return 1 << bit_pos
+        return 1 << bit_pos;
     }
 
     // encode entire string with one hot
     // bitwise-or every character encoding
     pub fn encode_str(s: &str) -> u64 {
         let mut res = 0;
-        for c in s.chars(){
+        for c in s.chars() {
             res |= encode(c);
         }
         res
@@ -34,19 +34,15 @@ mod rsack {
     }
 
     // find one character of intersection between strings
-    // bitwise-and both string encodings 
+    // bitwise-and both string encodings
     pub fn intersection_example(s0: &str, s1: &str) -> Option<char> {
-        decode(
-            encode_str(s0) & encode_str(s1)
-        )
+        decode(encode_str(s0) & encode_str(s1))
     }
-    
+
     // find one character of intersection between 3 strings (part2)
-    // bitwise-and both string encodings 
+    // bitwise-and both string encodings
     pub fn intersection_3_example(s0: &str, s1: &str, s2: &str) -> Option<char> {
-        decode(
-            encode_str(s0) & encode_str(s1) & encode_str(s2)
-        )
+        decode(encode_str(s0) & encode_str(s1) & encode_str(s2))
     }
 
     // decode frpm one hot
@@ -63,7 +59,7 @@ mod rsack {
 }
 
 struct Day03 {
-    rucksacks: String 
+    rucksacks: String,
 }
 
 impl AoC for Day03 {
@@ -77,12 +73,10 @@ impl AoC for Day03 {
 
     // implement your file loader here
     fn from_file(filename: &str) -> Option<Self> {
-       let file_str = fs::read_to_string(filename).unwrap();
-       Some(
-        Day03 {
-            rucksacks: file_str
-        }
-       )
+        let file_str = fs::read_to_string(filename).unwrap();
+        Some(Day03 {
+            rucksacks: file_str,
+        })
     }
 
     // implement the part1 solution here
@@ -94,7 +88,7 @@ impl AoC for Day03 {
             match common {
                 Some(s) => {
                     total_score += rsack::score(s);
-                },
+                }
                 None => {
                     println!("no common character found for {}", line);
                 }
@@ -114,7 +108,7 @@ impl AoC for Day03 {
             match common {
                 Some(s) => {
                     total_score += rsack::score(s);
-                },
+                }
                 None => {
                     println!("no common character found for {},{},{}", l1, l2, l3);
                 }
@@ -132,7 +126,7 @@ fn main() {
 // set up the tests here
 #[cfg(test)]
 mod tests {
-    use crate::{Day03, rsack};
+    use crate::{rsack, Day03};
     use aoc_rs::AoC;
     static TEST_FNAME: &str = "./inputs/day03/test.txt";
 
@@ -147,23 +141,23 @@ mod tests {
 
     #[test]
     fn test_intersection() {
-        assert_eq!(rsack::intersection_example("vJrwpWtwJgWr", "hcsFMMfFFhFp").unwrap(), 'p');
-        assert_eq!(rsack::intersection_example("jqHRNqRjqzjGDLGL", "rsFMfFZSrLrFZsSL").unwrap(), 'L');
+        assert_eq!(
+            rsack::intersection_example("vJrwpWtwJgWr", "hcsFMMfFFhFp").unwrap(),
+            'p'
+        );
+        assert_eq!(
+            rsack::intersection_example("jqHRNqRjqzjGDLGL", "rsFMfFZSrLrFZsSL").unwrap(),
+            'L'
+        );
     }
 
     #[test]
     fn test_part1() {
-        assert_eq!(
-            Day03::from_file(TEST_FNAME).unwrap().part1().unwrap(),
-            157 
-        );
+        assert_eq!(Day03::from_file(TEST_FNAME).unwrap().part1().unwrap(), 157);
     }
 
     #[test]
     fn test_part2() {
-        assert_eq!(
-            Day03::from_file(TEST_FNAME).unwrap().part2().unwrap(),
-            70 
-        );
+        assert_eq!(Day03::from_file(TEST_FNAME).unwrap().part2().unwrap(), 70);
     }
 }

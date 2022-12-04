@@ -113,7 +113,6 @@ mod rps {
     pub fn score_game(my_move: &GameMove, opponent_move: &GameMove) -> u32 {
         get_move_score(my_move) + get_outcome_score_char(&play_game(my_move, opponent_move))
     }
-
 }
 
 struct Day02 {
@@ -131,17 +130,13 @@ impl AoC for Day02 {
     fn from_file(filename: &str) -> Option<Self> {
         let mut day02 = Day02 {
             games: Vec::<(rps::GameMove, rps::GameMove)>::new(),
-            games_outcome:
-                Vec::<(rps::GameOutcome, rps::GameMove)>::new(),
+            games_outcome: Vec::<(rps::GameOutcome, rps::GameMove)>::new(),
         };
         let f_string = fs::read_to_string(filename).unwrap();
         for line in f_string.split('\n') {
-            let op_move =
-                rps::get_opponent_move_char(&line.chars().nth(0).unwrap()).unwrap();
-            let my_move =
-                rps::get_my_move_char(&line.chars().nth(2).unwrap()).unwrap();
-            let game_outcome =
-                rps::get_outcome_char(&line.chars().nth(2).unwrap()).unwrap();
+            let op_move = rps::get_opponent_move_char(&line.chars().nth(0).unwrap()).unwrap();
+            let my_move = rps::get_my_move_char(&line.chars().nth(2).unwrap()).unwrap();
+            let game_outcome = rps::get_outcome_char(&line.chars().nth(2).unwrap()).unwrap();
             day02.games.push((my_move, op_move));
             day02.games_outcome.push((game_outcome, op_move));
         }
@@ -149,20 +144,14 @@ impl AoC for Day02 {
     }
 
     fn part1(&self) -> Result<Self::PuzzleReturnType, &'static str> {
-        Ok(self
-            .games
-            .iter()
-            .map(|g| rps::score_game(&g.0, &g.1))
-            .sum())
+        Ok(self.games.iter().map(|g| rps::score_game(&g.0, &g.1)).sum())
     }
 
     fn part2(&self) -> Result<Self::PuzzleReturnType, &'static str> {
         Ok(self
             .games_outcome
             .iter()
-            .map(|g| {
-                rps::score_game(&rps::get_my_move(&g.0, &g.1), &g.1)
-            })
+            .map(|g| rps::score_game(&rps::get_my_move(&g.0, &g.1), &g.1))
             .sum())
     }
 }
@@ -173,10 +162,10 @@ fn main() {
 
 #[cfg(test)]
 mod tests {
-    use crate::{Day02, rps};
+    use crate::{rps, Day02};
     use aoc_rs::AoC;
     static TEST_FNAME: &str = "./inputs/day02/test.txt";
-    
+
     fn score_char_game(my_move: &char, opponent_move: &char) -> u32 {
         rps::score_game(
             &rps::get_my_move_char(my_move).unwrap(),

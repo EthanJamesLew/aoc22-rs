@@ -1,4 +1,4 @@
-// Day 2 
+// Day 2: Rock Paper Scissors
 // Rock Paper Scissors
 use aoc_rs::AoC;
 use std::fs;

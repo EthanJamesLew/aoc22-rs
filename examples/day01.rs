@@ -1,4 +1,4 @@
-// Day 01: Elf Calories Puzzle
+// Day 1: Calorie Counting
 use aoc_rs::AoC;
 use std::fs;
 use std::vec::Vec;

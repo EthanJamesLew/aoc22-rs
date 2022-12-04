@@ -1,7 +1,9 @@
+// Day 3: Rucksack Reorganization
 #![feature(iter_array_chunks)]
 use aoc_rs::AoC;
 use std::fs;
 
+// rucksack methods
 mod rsack {
     // one hot encode [A-Za-z] ascii
     // offset by A from ASCII table for the puzzle

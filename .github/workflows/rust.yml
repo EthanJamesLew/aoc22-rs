@@ -21,3 +21,11 @@ jobs:
       run: cargo build --verbose
     - name: Run tests
       run: cargo test --examples --verbose
+    - name: Day 1
+      run: cargo run --example day01 --verbose
+    - name: Day 2
+      run: cargo run --example day02 --verbose
+    - name: Day 3
+      run: cargo run --example day03 --verbose
+    - name: Day 4
+      run: cargo run --example day04 --verbose

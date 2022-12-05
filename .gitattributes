@@ -1,2 +1,1 @@
-*.txt linguist-detectable=false
-*.py linguist-detectable=false
+examples/* linguist-documentation=false

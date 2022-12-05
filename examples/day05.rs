@@ -1,7 +1,10 @@
+// Day 5: Supply Stacks
 use aoc_rs::AoC;
 use std::fs;
 
 mod cs {
+    // crate move logic
+    // TODO: copies are bad here
     pub fn move_crates(
         scenario: &mut Vec<Vec<char>>,
         quantity: usize,
@@ -19,6 +22,7 @@ mod cs {
         updated_scenario
     }
 
+    // part 2
     pub fn move_crates_9001(
         scenario: &mut Vec<Vec<char>>,
         quantity: usize,
@@ -79,10 +83,13 @@ impl AoC for Day05 {
     // implement your file loader here
     fn from_file(filename: &str) -> Option<Self> {
         let file_str = fs::read_to_string(filename).ok().unwrap();
+
+        // pull out the two parts
         let mut parts = file_str.split("\n\n");
         let layout = parts.nth(0).unwrap();
         let commands = parts.nth(0).unwrap();
 
+        // collect the layout
         let mut layout_rev = layout.split('\n').rev();
         let nums = layout_rev.nth(0).unwrap().trim();
         let max_num: usize = nums.split(' ').last().unwrap().parse().unwrap();
@@ -102,6 +109,7 @@ impl AoC for Day05 {
             }
         }
 
+        // collect the commands
         let mut command_v: Vec<(usize, usize, usize)> = vec![];
         for line in commands.split('\n') {
             let mut comm = line.clone().split(" ");
@@ -129,7 +137,7 @@ impl AoC for Day05 {
 
 fn main() {
     // run everything
-    Day05::from_file("./inputs/day05/input.txt").unwrap().run();
+    Day05::from_argparse("./inputs/day05/input.txt").unwrap().run();
 }
 
 // set up the tests here

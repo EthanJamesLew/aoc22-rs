@@ -22,7 +22,7 @@ pub trait AoC: Sized {
                     .help("Advent of Code Puzzle Input File"),
             )
             .get_matches();
-        let inp_string = default_filename.clone().to_string();
+        let inp_string = default_filename.to_string();
         let input_file = matches
             .get_one::<String>("input_filepath")
             .unwrap_or(&inp_string);

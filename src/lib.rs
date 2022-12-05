@@ -1,3 +1,4 @@
+use clap::{command, Arg};
 use colored::Colorize;
 use std::fmt::Display;
 
@@ -6,6 +7,27 @@ pub trait AoC: Sized {
 
     // all puzzles must be loadable from file
     fn from_file(filename: &str) -> Option<Self>;
+
+    // for making a AoC CLI app
+    fn from_argparse(default_filename: &str) -> Option<Self> {
+        let matches = command!()
+            .name("Advent of Code Solutions")
+            .version("0.1.0")
+            .author("Ethan Lew")
+            .about("Produces Solutions to AoC")
+            .arg(
+                Arg::new("input_filepath")
+                    .short('f')
+                    .long("file")
+                    .help("Advent of Code Puzzle Input File"),
+            )
+            .get_matches();
+        let inp_string = default_filename.clone().to_string();
+        let input_file = matches
+            .get_one::<String>("input_filepath")
+            .unwrap_or(&inp_string);
+        return Self::from_file(input_file.as_str());
+    }
 
     // puzzle have a day
     fn day() -> u32;

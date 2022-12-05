@@ -84,7 +84,9 @@ impl AoC for Day01 {
 }
 
 fn main() {
-    Day01::from_file("./inputs/day01/input.txt").unwrap().run();
+    Day01::from_argparse("./inputs/day01/input.txt")
+        .unwrap()
+        .run();
 }
 
 #[cfg(test)]

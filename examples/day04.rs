@@ -91,7 +91,9 @@ impl AoC for Day04 {
 
 fn main() {
     // run everything
-    Day04::from_file("./inputs/day04/input.txt").unwrap().run();
+    Day04::from_argparse("./inputs/day04/input.txt")
+        .unwrap()
+        .run();
 }
 
 // set up the tests here

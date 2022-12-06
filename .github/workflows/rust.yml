@@ -29,3 +29,7 @@ jobs:
       run: cargo run --example day03 --verbose
     - name: Day 4
       run: cargo run --example day04 --verbose
+    - name: Day 5
+      run: cargo run --example day05 --verbose
+    - name: Day 6
+      run: cargo run --example day06 --verbose

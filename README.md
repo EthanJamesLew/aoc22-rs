@@ -47,7 +47,7 @@ impl AoC for Day02 {
 
 fn main() {
     // run everything
-    Day02::from_file("./inputs/day02/input.txt").unwrap().run();
+    Day02::from_argparse("./inputs/day02/input.txt").unwrap().run();
 }
 
 // set up the tests here

@@ -26,3 +26,5 @@ jobs:
       run: ./profile/compare_python.sh 01 
     - name: Day 4
       run: ./profile/compare_python.sh 04 
+    - name: Day 6
+      run: ./profile/compare_python.sh 06
